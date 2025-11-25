@@ -27,6 +27,7 @@ class SiteProjectsParser:
             longlists_report += longlists
         # pprint(longlists_report)
         sheets_client.write_spread_sheet("RecruitTracker", "longlists", longlists_report)
+        logger.trace("Обновление завершено успешно..")
 
         # обработка и запись данных в таблицу
         # data_processor(stages_report, longlists_report)
