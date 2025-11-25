@@ -1,14 +1,14 @@
 import time
-from pprint import pprint
 
 from config import Settings
 from api_client import APIClient
 from data_processor import data_processor, sheets_client
 from site_parser import parser
 from sheets_client import GoogleSheetsClient
+from tg_logger import logger
 
 
-class RecruitmentTracker:
+class SiteProjectsParser:
     def __init__(self):
         self.settings = Settings()
         self.api_client = APIClient()
@@ -34,11 +34,11 @@ class RecruitmentTracker:
 if __name__ == "__main__":
     while True:
         try:
-            tracker = RecruitmentTracker()
+            tracker = SiteProjectsParser()
             tracker.run()
             time.sleep(60*60*12)
         except Exception as e:
             print(e)
-            time.sleep(3)
-            tracker = RecruitmentTracker()
-            tracker.run()
+            logger.critical(f"❌ Остановка скрипта SiteProjectsParser, ошибка: {e}")
+            time.sleep(60*5)
+            logger.info(f"✅ SiteProjectsParser перезапустился")

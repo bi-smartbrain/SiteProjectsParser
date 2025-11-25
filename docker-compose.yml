@@ -1,8 +1,8 @@
 services:
-  a-reply-deleter:
+  site-projects-parser:
     build: .
-    image: a-reply-deleter:latest
-    container_name: a-reply-deleter
+    image: site-projects-parser:latest
+    container_name: site-projects-parser
     restart: unless-stopped
     working_dir: /app
     environment:
