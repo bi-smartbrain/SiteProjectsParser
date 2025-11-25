@@ -1,5 +1,5 @@
 import time
-
+from datetime import datetime as dt
 from config import Settings
 from api_client import APIClient
 from data_processor import data_processor, sheets_client
@@ -27,7 +27,8 @@ class SiteProjectsParser:
             longlists_report += longlists
         # pprint(longlists_report)
         sheets_client.write_spread_sheet("RecruitTracker", "longlists", longlists_report)
-        logger.trace("Обновление завершено успешно..")
+        now = dt.now()
+        print(f"{now} Обновление завершено успешно..")
 
         # обработка и запись данных в таблицу
         # data_processor(stages_report, longlists_report)
