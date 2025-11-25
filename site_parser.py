@@ -137,25 +137,23 @@ stage_example = {
         }
 
 
-def parser(is_all=True):
+def parser(domain, is_all=True):
     """Парсинг данных с корпоративных сайтов"""
     stages_report = [['actual_date', 'domain', 'stage_url', 'stage_id', 'stage_name', 'stage_created',
                       'stage_status', 'currency', 'priority', 'project_id', 'private_ru', 'private_en']]
 
-    longlist_report = [['actual_date', 'domain', 'longlist_id', 'stage_url', 'total_count',
-                        'project_id', 'stage_id', 'project_name', 'longlist_title']]
-
-    for domain in ["rubrain", "junbrain", "engibrain"]:
-        stages = api_client.get_stages(domain=domain, is_all=is_all)
-        longlists = api_client.get_longlists(domain=domain, is_all=is_all)
 
 
-        stages_report += create_stages_report(stages, domain)
-        longlist_report += create_longlists_report(longlists, domain)
+    # stages = api_client.get_stages(domain=domain, is_all=is_all)
+    longlists = api_client.get_longlists(domain=domain, is_all=is_all)
+
+
+    # stages_report += create_stages_report(stages, domain)
+    longlist_report = create_longlists_report(longlists, domain)
 
     result = {
-        'stages_report': stages_report,
-        'longlists_report': longlist_report,
+        # 'stages_report': stages_report,
+        'longlist_report': longlist_report,
     }
 
     return result

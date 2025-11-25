@@ -93,7 +93,7 @@ class APIClient:
         total_pages = 1
         size = 50
         if is_all:
-            counters = requests.get(url=f"https://{domain}.com/api/stage/long-list/counters/",
+            counters = requests.get(url=f"https://{domain}/api/stage/long-list/counters/",
                                     headers=self.headers, timeout=30)
             counters.raise_for_status()
             total_size = counters.json()['total']
@@ -102,7 +102,7 @@ class APIClient:
 
         grand_results = []
         for page in range(1, total_pages + 1):
-            resp = requests.get(f"https://{domain}.com/api/stage/long-list/?page={page}&size={size}",
+            resp = requests.get(f"https://{domain}/api/stage/long-list/?page={page}&size={size}",
                                 headers=self.headers, timeout=30)
             resp.raise_for_status()
             results = resp.json()['results']
